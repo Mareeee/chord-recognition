@@ -1,0 +1,9 @@
+librosa
+numpy
+pandas
+torch
+torchaudio
+mirdata
+matplotlib
+scikit-learn
+tqdm
