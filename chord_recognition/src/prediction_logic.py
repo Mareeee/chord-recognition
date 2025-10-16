@@ -29,7 +29,7 @@ def _compute_segments_bounds(T_frames: int, max_frames: int = 128, overlap: floa
     return bounds, step
 
 
-def _beat_segment_bounds(y, sr=SR, hop_length=HOP, min_frames=48, pad_to=128):
+def _beat_segment_bounds(y, sr=SR, hop_length=HOP, min_frames=24, pad_to=128):
     """
     Napravi granice segmenata po beatovima; spajaj prekratke delove da ne bi
     padovao sve u nedogled. Vraća bounds u FREJMOVIMA i 'nominalni step' (median dužina).
@@ -75,8 +75,8 @@ def extract_features_for_prediction(
     audio_path,
     sr: int = SR,
     hop_length: int = HOP,
-    max_frames: int = 128,
-    overlap: float = 0.5,
+    max_frames: int = 64,
+    overlap: float = 0.75,
     return_meta: bool = False,
     seg_mode: str = "beat_or_fixed",
     min_beat_frames: int = 48,

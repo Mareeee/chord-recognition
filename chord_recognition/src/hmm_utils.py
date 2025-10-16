@@ -100,7 +100,7 @@ def viterbi_decoding(log_emission_probs, transition_matrix, prior_probs=None, st
 
 
 def extract_raw_cnn_log_probabilities(
-    audio_path, model_path, dataset_instance, device, overlap=0.5, seg_mode="beat_or_fixed", temperature=1.5
+    audio_path, model_path, dataset_instance, device, overlap=0.5, seg_mode="beat_or_fixed", temperature=1.0
 ):
     """
     Izvlači log-probabilitete po segmentima iz treniranog CNN-a.

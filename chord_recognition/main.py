@@ -44,7 +44,7 @@ if __name__ == "__main__":
     dataset = GuitarSetDataset(
         data_dir="data/guitarset",
         audio_folder="audio_mono-pickup_mix",
-        beat_sync=False,
+        beat_sync=True,
         augment=True,
         time_stretch_prob=0.10,
         max_seconds=8,
@@ -61,8 +61,7 @@ if __name__ == "__main__":
         print("3. Predict Chords for a New Audio File (with HMM Smoothing)")
         print("4. Predict Chords for a New Audio File (RAW CNN)")
         print("5. Evaluate CSR/WCSR/Overlap on TEST split")
-        print("6. Evaluate & Export Reports (CSV/JSON + Confusion)")
-        print("7. Exit")
+        print("6. Exit")
         print("==============================================")
 
         choice = input("Enter operation number: ").strip()
@@ -93,16 +92,8 @@ if __name__ == "__main__":
             evaluate_on_test(dataset, MODEL_PATH, device, use_hmm=True)
 
         elif choice == "6":
-            from src.reporter import evaluate_and_report
-            summary = evaluate_and_report(dataset, MODEL_PATH, device, out_dir="reports", use_hmm=True)
-            if summary:
-                print("\nReports saved to:")
-                for k, v in summary["files"].items():
-                    print(f" - {k}: {v}")
-
-        elif choice == "7":
             print("Exiting program. Goodbye!")
             break
 
         else:
-            print("Invalid input. Please choose 1, 2, 3, 4, 5, 6 or 7.")
+            print("Invalid input. Please choose 1, 2, 3, 4, 5 or 6.")
