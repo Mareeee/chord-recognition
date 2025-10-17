@@ -23,8 +23,8 @@ from nn_runner import (
     model_paths as nn_model_path,
 )
 
-USE_AUG = False
-MAX_TRAIN_SONGS = 15
+USE_AUG = True
+MAX_TRAIN_SONGS = 0
 
 def _build_train_lists(train_idx, pairs):
     from tqdm import tqdm
@@ -43,7 +43,7 @@ def cmd_train(kind: str):
     samples, artist_map = load_dataset()
     splits = split_by_artist(artist_map, ratios=(0.7,0.15,0.15))
     X_list, Y_list = _build_train_lists(splits["train"], pairs)
-    nn_train(kind, X_list, Y_list, epochs=5, batch_size=4, lr=1e-3)
+    nn_train(kind, X_list, Y_list, epochs=15, batch_size=4, lr=1e-3)
     return 0
 
 def cmd_eval(kind: str):

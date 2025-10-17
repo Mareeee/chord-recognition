@@ -22,7 +22,7 @@ for d in [OUTPUT_DIR, CACHE_DIR, MODELS_DIR, PRED_DIR, DOWNLOADS_DIR]:
 
 ZENODO_BASE = "https://zenodo.org/records/3371780/files"
 ANNOTATION_ZIP = "annotation.zip"
-AUDIO_PICKUP_ZIP = "audio_mono-pickup.zip"
+AUDIO_PICKUP_ZIP = "audio_mono-pickup_mix.zip"
 AUDIO_MIC_ZIP    = "audio_mono-mic.zip"
 
 def _zenodo_url(name: str) -> str:

@@ -56,8 +56,6 @@ This project demonstrates a complete chord-recognition workflow on the **GuitarS
 - **CNN+LSTM** — *hybrid*  
   CNN for local patterns → LSTM for longer‑range progressions.
 
-> Student‑level settings: a few epochs, small batches, optional **class‑weights** to mitigate label imbalance.
-
 ---
 
 ## 5) Metrics and interpretation
@@ -83,8 +81,10 @@ This project demonstrates a complete chord-recognition workflow on the **GuitarS
 **Windows (PowerShell):**
 ```powershell
 python -m venv .venv
-.\.venv\Scriptsctivate
+.\.venv\Scripts\Activate
 pip install -r requirements.txt
+python.exe src\main.py
+
 ```
 
 **macOS / Linux (bash/zsh):**
@@ -92,6 +92,8 @@ pip install -r requirements.txt
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+python.exe src\main.py
+
 ```
 
 > If you are on Windows and see a PyTorch DLL warning, use the **CPU‑only** PyTorch wheel (already set in requirements for the student setup) and run NN training via the provided helper that spawns a clean subprocess.
