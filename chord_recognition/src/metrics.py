@@ -1,18 +1,26 @@
+from __future__ import annotations
+from typing import Dict
 import numpy as np
 
-def compute_framewise_metrics(ref_idx, est_idx, frame_sec):
-    T = min(len(ref_idx), len(est_idx))
-    if T == 0:
-        return 0.0, 0.0, 0.0
+def csr(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    return float((y_true == y_pred).mean()) if len(y_true) else 0.0
 
-    ref_idx = ref_idx[:T]
-    est_idx = est_idx[:T]
+def wcsr(y_true: np.ndarray, y_pred: np.ndarray, weights: np.ndarray) -> float:
+    if len(y_true)==0: return 0.0
+    w = weights[:len(y_true)]
+    correct = (y_true == y_pred).astype(float)
+    return float((correct * w).sum() / (w.sum() + 1e-8))
 
-    correct = (ref_idx == est_idx)
-    csr = float(np.sum(correct)) / float(T)
+def overlap_ratio(y_true: np.ndarray, y_pred: np.ndarray, weights: np.ndarray) -> float:
+    return wcsr(y_true, y_pred, weights)
 
-    wcsr = float(np.sum(correct) * frame_sec) / float(T * frame_sec)
+def beat_weights(boundaries: np.ndarray) -> np.ndarray:
+    return boundaries[1:] - boundaries[:-1]
 
-    overlap = wcsr
-
-    return csr, wcsr, overlap
+def metrics_dict(y_true: np.ndarray, y_pred: np.ndarray, boundaries: np.ndarray) -> Dict[str, float]:
+    w = beat_weights(boundaries)
+    return {
+        "CSR": csr(y_true, y_pred),
+        "WCSR": wcsr(y_true, y_pred, w),
+        "Overlap": overlap_ratio(y_true, y_pred, w),
+    }
