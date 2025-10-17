@@ -9,13 +9,18 @@ __pycache__/
 .vscode/
 .idea/
 
-guitarset/
-processed/
-raw/
+data/
+predictions/
+outputs/models/
+cache/
 
 cnn_chordnet_baseline.pth
-
 hmm_transition_matrix.npy
 
 *.log
 *.npy
+
+*.npz
+*.pkl
+*.pt
+*.json
