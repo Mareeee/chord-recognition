@@ -4,8 +4,8 @@ import numpy as np
 import librosa
 rng = np.random.default_rng(0)
 
-HOP_LENGTH = 1024   # bilo 512
-SR = 22050          # bilo 44100
+HOP_LENGTH = 512
+SR = 44100
 
 def load_audio(path: str, sr: int = SR) -> Tuple[np.ndarray, int]:
     y, sr = librosa.load(path, sr=sr, mono=True)

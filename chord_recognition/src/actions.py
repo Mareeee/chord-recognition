@@ -17,8 +17,8 @@ SRC_DIR = Path(__file__).resolve().parent
 
 MODEL_PATH_HMM = MODELS_DIR / "hmm_baseline.pkl"
 
-USE_AUG = False
-MAX_TRAIN_SONGS = 15
+USE_AUG = True
+MAX_TRAIN_SONGS = 0
 
 def action_train_hmm():
     pairs = find_pairs()
