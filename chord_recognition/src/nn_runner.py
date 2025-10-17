@@ -78,7 +78,6 @@ def train(kind: str, X_list: List[np.ndarray], y_list: List[np.ndarray],
     from chord_vocab import IDX_TO_LABEL
     weights = _class_weights_from_y(y_list, n_classes=len(IDX_TO_LABEL)).to(device())
     criterion = nn.CrossEntropyLoss(weight=weights, ignore_index=-100)
-    print("Class weights:", weights.detach().cpu().numpy())
     optim = torch.optim.Adam(model.parameters(), lr=lr)
 
     model.train()
